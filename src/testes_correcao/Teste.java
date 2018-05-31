@@ -10,12 +10,15 @@ import org.junit.Test;
 import controller.GrafoController;
 import grafo.Grafo;
 import grafo.GrafoBase;
+import grafo.GrafoPonderado;
 
 
 
 public class Teste {
 	GrafoController  controller;
-	Grafo grafo1, grafo2, grafo3, grafo4;
+	Grafo grafo1, grafo3;
+	GrafoPonderado grafo2,grafo4;
+
 
 	
 
@@ -26,9 +29,9 @@ public class Teste {
 
 		
 		grafo1 = controller.readGrafo("../bibliotecagrafos_correcao/src/q1_grafos.txt");
-		grafo2 = controller.readGrafo("../bibliotecagrafos_correcao/src/q2_grafos.txt");
+		grafo2 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q2_grafos.txt"); //Não cria grafo com peso. Dá erro de cast
 		//grafo3 = controller.readGrafo("../bibliotecagrafos_correcao/src/q3_grafos.txt");
-		grafo4 = controller.readGrafo("../bibliotecagrafos_correcao/src/q4_grafos.txt");
+		grafo4 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q4_grafos.txt"); //Não cria grafo com peso. Dá erro de cast
 	}
 	
 	@Test
@@ -46,21 +49,21 @@ public class Teste {
 	@Test
 	public void testgetVertexNumber(){
 		Assert.assertEquals(5, controller.getVertexNumber(grafo1));
-		Assert.assertEquals(5, controller.getVertexNumber(grafo2));
-		Assert.assertEquals(8, controller.getVertexNumber(grafo4));
+		Assert.assertEquals(5, grafo2.getVertexNumber());
+		Assert.assertEquals(8, grafo4.getVertexNumber());
 	}
 	
 	
 	@Test
 	public void testgetEdgeNumber(){
 		Assert.assertNotEquals(5, controller.getEdgeNumber(grafo1));
-		Assert.assertNotEquals(6, controller.getEdgeNumber(grafo2)); //O metodo conta 2 vezes algumas arestas, logo, o resultado da diferente do esperado
+		Assert.assertNotEquals(6, grafo2.getEdgeNumber()); //O metodo conta 2 vezes algumas arestas, logo, o resultado da diferente do esperado
 
 	}
 	
 	@Test
-	public void getMeanEdge(){
+	public void gettestMeanEdge(){
 		Assert.assertEquals(2,2 , controller.getMeanEdge(grafo1));
-		Assert.assertEquals(2.4 , 2.4, controller.getMeanEdge(grafo2));
+		Assert.assertEquals(2.4 , 2.4, grafo2.getMeanEdge());
 	}
 }
