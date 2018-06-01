@@ -31,7 +31,7 @@ public class Teste {
 		grafo1 = controller.readGrafo("../bibliotecagrafos_correcao/src/q1_grafos.txt");
 		//grafo2 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q2_grafos.txt"); //Não cria grafo com peso. Dá erro de cast
 		//grafo3 = controller.readGrafo("../bibliotecagrafos_correcao/src/q3_grafos.txt");
-		grafo4 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q4_grafos.txt"); //Não cria grafo com peso. Dá erro de cast
+		//grafo4 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q4_grafos.txt"); //Não cria grafo com peso. Dá erro de cast
 		grafo5 = controller.readGrafo("../bibliotecagrafos_correcao/src/q5_grafos.txt");
 		grafo6 = controller.readGrafo("../bibliotecagrafos_correcao/src/q6_grafos.txt");
 	}
