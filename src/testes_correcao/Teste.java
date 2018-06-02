@@ -29,9 +29,9 @@ public class Teste {
 
 		
 		grafo1 = controller.readGrafo("../bibliotecagrafos_correcao/src/q1_grafos.txt");
-		//grafo2 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q2_grafos.txt"); //Não cria grafo com peso. Dá erro de cast
+		//grafo2 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q2_grafos.txt"); //Nï¿½o cria grafo com peso. Dï¿½ erro de cast
 		//grafo3 = controller.readGrafo("../bibliotecagrafos_correcao/src/q3_grafos.txt");
-		//grafo4 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q4_grafos.txt"); //Não cria grafo com peso. Dá erro de cast
+		//grafo4 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q4_grafos.txt"); //Nï¿½o cria grafo com peso. Dï¿½ erro de cast
 		grafo5 = controller.readGrafo("../bibliotecagrafos_correcao/src/q5_grafos.txt");
 		grafo6 = controller.readGrafo("../bibliotecagrafos_correcao/src/q6_grafos.txt");
 	}
@@ -49,7 +49,7 @@ public class Teste {
 		
 		Grafo grafoTeste3 =   controller.readGrafo("../bibliotecagrafos_correcao/src/q5_grafos.txt");
 		Assert.assertEquals(6, controller.getVertexNumber(grafoTeste3));
-		Assert.assertNotEquals(10, controller.getEdgeNumber(grafoTeste3)); //Retorna numero dobrado de vertices. Só conta até a 6 linha do arquivo (apos o numero de vertices) e dobra o valor da mesma. Não chega a construir o grafo completo.
+		Assert.assertNotEquals(10, controller.getEdgeNumber(grafoTeste3)); //Retorna numero dobrado de vertices. Sï¿½ conta atï¿½ a 6 linha do arquivo (apos o numero de vertices) e dobra o valor da mesma. Nï¿½o chega a construir o grafo completo.
 
 		Grafo grafoTeste4 = controller.readGrafo("../bibliotecagrafos_correcao/src/q6_grafos.txt");
 		Assert.assertEquals(4, controller.getVertexNumber(grafoTeste4));
@@ -69,9 +69,10 @@ public class Teste {
 	
 	@Test
 	public void testgetEdgeNumber(){
-		Assert.assertNotEquals(5, controller.getEdgeNumber(grafo1)); //Quantidade de arestas deveria ser 5, porém retorna 10
-		Assert.assertNotEquals(10, controller.getEdgeNumber(grafo5)); //Quantidade arestas deveria ser 10, porem está retornando o numero dobrado de vertices, pois o arquivo de entrada so le a quantidade de linhas que formam as arestas a partir do numero de vertices.
-		Assert.assertNotEquals(4, controller.getEdgeNumber(grafo6)); //Quantidade arestas deveria ser 4, porem está retornando o numero dobrado de vertices, pois o arquivo de entrada so le a quantidade de linhas que formam as arestas a partir do numero de vertices.
+
+		Assert.assertNotEquals(5, controller.getEdgeNumber(grafo1)); //Quantidade de arestas deveria ser 5, porï¿½m retorna 10
+		Assert.assertNotEquals(10, controller.getEdgeNumber(grafo5)); //Quantidade arestas deveria ser 10, porem estï¿½ retornando o numero dobrado de vertices, pois o arquivo de entrada so le a quantidade de linhas que formam as arestas a partir do numero de vertices.
+		Assert.assertNotEquals(4, controller.getEdgeNumber(grafo6)); //Quantidade arestas deveria ser 4, porem estï¿½ retornando o numero dobrado de vertices, pois o arquivo de entrada so le a quantidade de linhas que formam as arestas a partir do numero de vertices.
 		//Assert.assertNotEquals(6, grafo2.getEdgeNumber()); //O metodo conta 2 vezes algumas arestas, logo, o resultado da diferente do esperado
 
 	}
@@ -79,9 +80,51 @@ public class Teste {
 	@Test
 	public void gettestMeanEdge(){
 		Assert.assertEquals(2,2 , controller.getMeanEdge(grafo1));
-		Assert.assertNotEquals(1.6, controller.getMeanEdge(grafo5), 5*Math.ulp(1.6)); //Grau medio do grafo5 deveria ser 1.6 e não 2 como retornado
+		Assert.assertNotEquals(1.6, controller.getMeanEdge(grafo5), 5*Math.ulp(1.6)); //Grau medio do grafo5 deveria ser 1.6 e nï¿½o 2 como retornado
 		Assert.assertNotEquals(1, controller.getMeanEdge(grafo6)); //Grau medio do grafo 6 deveria ser 1 e nao 
 		//Assert.assertEquals(2.4 , 2.4, grafo2.getMeanEdge());
+	}
+	
+	@Test
+	public void testBFS() {
+
+        String output1 = "1 - 0 -\r\n" + 
+                "2 - 1 1\r\n" + 
+                "3 - 2 5\r\n" + 
+                "4 - 2 5\r\n" + 
+                "5 - 1 1\r\n";
+        
+        String output2 = "1 - 1 5\r\n" + 
+                "2 - 1 5\r\n" + 
+                "3 - 1 5\r\n" + 
+                "4 - 1 5\r\n" + 
+                "5 - 0 -\r\n" ;
+        
+        String output3 = "1 - 2 5\r\n" + 
+                "2 - 2 5\r\n" + 
+                "3 - 0 -\r\n" + 
+                "4 - 2 5\r\n" + 
+                "5 - 1 3\r\n" ;
+        
+
+        Assert.assertNotEquals(output1, controller.BFS(grafo1, 1));
+        Assert.assertNotEquals(output3, controller.BFS(grafo1, 3));
+        Assert.assertNotEquals(output2, controller.BFS(grafo1, 5));
+	}
+	
+	@Test
+	public void testBFSException() {
+		
+		String output1 = "1 - 0 -\r\n" + 
+                "2 - 1 1\r\n" + 
+                "3 - 2 5\r\n" + 
+                "4 - 2 5\r\n" + 
+                "5 - 1 1\r\n";
+		try {
+			Assert.assertEquals(output1, controller.BFS(grafo1, 0)); // Metodo apresenta exception antes de passar por todas as linhas, assim nao eh possivel cobrir todo o metodo.
+		}catch(Exception e) {
+			
+		}
 	}
 	
 	@Test
