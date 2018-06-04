@@ -16,7 +16,7 @@ import grafo.GrafoPonderado;
 
 public class Teste {
 	GrafoController  controller;
-	Grafo grafo1, grafo3, grafo5, grafo6;
+	Grafo grafo1, grafo3, grafo5, grafo6, grafo7;
 	GrafoPonderado grafo2,grafo4;
 
 
@@ -34,6 +34,7 @@ public class Teste {
 		//grafo4 = controller.readWeightedGrafo("../bibliotecagrafos_correcao/src/q4_grafos.txt"); //Nï¿½o cria grafo com peso. Dï¿½ erro de cast
 		grafo5 = controller.readGrafo("../bibliotecagrafos_correcao/src/q5_grafos.txt");
 		grafo6 = controller.readGrafo("../bibliotecagrafos_correcao/src/q6_grafos.txt");
+		grafo7 = controller.readGrafo("../bibliotecagrafos_correcao/src/q7_grafos.txt");
 	}
 	
 	@Test
@@ -176,5 +177,11 @@ public class Teste {
 		Assert.assertEquals("Tipo nÃ£o definido", controller.graphRepresentation(grafo1, "AK"));
 		Assert.assertNotEquals(resultadoAM5, controller.graphRepresentation(grafo5, "AM")); // Comparacao deve ser diferente, metodo nao funciona devidamente.
 		Assert.assertNotEquals(resultadoAL5, controller.graphRepresentation(grafo5, "AL")); // Comparacao deve ser diferente, metodo nao funciona devidamente.
+	}
+	
+	@Test
+	public void testConnected() {
+		Assert.assertTrue(controller.connected(grafo1)); //retorna true, porém nao foi implementado corretamente
+		Assert.assertNotEquals(false, controller.connected(grafo7));
 	}
 }
