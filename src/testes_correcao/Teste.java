@@ -181,7 +181,24 @@ public class Teste {
 	
 	@Test
 	public void testConnected() {
-		Assert.assertTrue(controller.connected(grafo1)); //retorna true, porém nao foi implementado corretamente
-		Assert.assertNotEquals(false, controller.connected(grafo7));
+		Assert.assertTrue(controller.connected(grafo1)); //retorna true, porem nao foi implementado corretamente
+		Assert.assertNotEquals(false, controller.connected(grafo7)); //deveria retornar false, porem retornou true
+	}
+	
+	@Test
+	public void testMst() {
+		String mst1 = "1 - 0 -\n"
+				   + "2 - 1 1\n"
+				   + "3 - 2 5\n"
+				   + "4 - 2 5\n"
+				   + "5 - 1 1\n";
+		
+		String mst6 = "1 - 0 -\n"
+				   + "2 - 1 1\n"
+				   + "3 - 2 2\n"
+				   + "4 - 1 1\n";
+		
+		Assert.assertNotEquals(mst1, controller.mst(grafo1)); //mst nao esta funcionando
+		Assert.assertNotEquals(mst6, controller.mst(grafo6)); //mst nao esta funcionando
 	}
 }
