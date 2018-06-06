@@ -199,7 +199,8 @@ public class Teste {
     public void testaShortestPath2(){
         String expected = "[1, 2, 5]";
     	try {
-    		// O teste não é executado porque o código para criar um grafo com pesos.
+    		// O teste não é executado porque o código para criar um grafo com pesos
+    		// não funciona.
     		// Assim, não dá para executar esse teste.
             //Assert.assertEquals(expected, controller.shortestPath(grafo2, new Integer(1), new Integer(5)));
         } catch (Exception e) {
@@ -212,12 +213,15 @@ public class Teste {
         String expected = "[3, 4, 5]";
     	try {
     		// O teste não é executado porque o código para criar um grafo com pesos.
+    		// não funciona.
     		// Assim, não dá para executar esse teste.
             //Assert.assertEquals(expected, controller.shortestPath(grafo2, new Integer(3), new Integer(5)));
         } catch (Exception e) {
             Assert.fail();
         }
     }
+    
+    
 	
 	@Test
 	public void testMst() {
