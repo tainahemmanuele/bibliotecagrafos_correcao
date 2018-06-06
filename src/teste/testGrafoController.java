@@ -195,23 +195,5 @@ public class testGrafoController {
         }
     }
     
-    @Test
-    public void testaShortestPath1(){
-    	String expected = "[1]";
-    	try {
-            Assert.assertEquals(expected, controle.shortestPath(controle.readGrafo(grafo1), new Integer(1), new Integer(1)));
-        } catch (Exception e) {
-            Assert.fail();
-        }
-    }
-    
-    @Test
-    public void testaShortestPath2(){
-        /*String expected = "[1, 2]";
-    	try {
-            Assert.assertEquals(expected, controle.shortestPath(controle.readGrafo(grafo1), new Integer(1), new Integer(2)));
-        } catch (Exception e) {
-            Assert.fail();
-        }*/
-    }
+
 }

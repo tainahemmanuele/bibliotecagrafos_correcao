@@ -184,4 +184,38 @@ public class Teste {
 		Assert.assertTrue(controller.connected(grafo1)); //retorna true, porém nao foi implementado corretamente
 		Assert.assertNotEquals(false, controller.connected(grafo7));
 	}
+	
+	@Test
+    public void testaShortestPath1(){
+    	String expected = "[1]";
+    	try {
+            Assert.assertEquals(expected, controller.shortestPath(grafo1, new Integer(1), new Integer(1)));
+        } catch (Exception e) {
+            Assert.fail();
+        }
+    }
+    
+    @Test
+    public void testaShortestPath2(){
+        String expected = "[1, 2, 5]";
+    	try {
+    		// O teste não é executado porque o código para criar um grafo com pesos.
+    		// Assim, não dá para executar esse teste.
+            //Assert.assertEquals(expected, controller.shortestPath(grafo2, new Integer(1), new Integer(5)));
+        } catch (Exception e) {
+            Assert.fail();
+        }
+    }
+    
+    @Test
+    public void testaShortestPath3(){
+        String expected = "[3, 4, 5]";
+    	try {
+    		// O teste não é executado porque o código para criar um grafo com pesos.
+    		// Assim, não dá para executar esse teste.
+            //Assert.assertEquals(expected, controller.shortestPath(grafo2, new Integer(3), new Integer(5)));
+        } catch (Exception e) {
+            Assert.fail();
+        }
+    }
 }
