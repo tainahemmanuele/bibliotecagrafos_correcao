@@ -180,6 +180,43 @@ public class Teste {
 	}
 	
 	@Test
+	public void testRepresetacoes2() {
+		String resultadoAM1 = " 1 2 3 4 5\n" + 
+				"1 0.0 1.0 0.0 0.0 1.0\n" + 
+				"2 1.0 0.0 0.0 0.0 1.0\n" + 
+				"3 0.0 0.0 0.0 0.0 1.0\n" + 
+				"4 0.0 0.0 0.0 0.0 1.0\n" + 
+				"5 1.0 1.0 1.0 1.0 0.0\n";
+		
+		String resultadoAL1 = "1 - 2 5\n" + 
+				"2 - 1 5\n" + 
+				"3 - 5\n" + 
+				"4 - 5\n" + 
+				"5 - 1 2 3 4\n";
+		
+		String resultadoAM5 = " 1 2 3 4 5 6\n" + 
+				"1 0.0 1.0 1.0 0.0 1.0 1.0\n" + 
+				"2 1.0 0.0 1.0 1.0 1.0 0.0\n" + 
+				"3 1.0 1.0 0.0 0.0 0.0 0.0\n" + 
+				"4 0.0 1.0 0.0 0.0 1.0 1.0\n" + 
+				"5 1.0 1.0 0.0 1.0 0.0 0.0\n" + 
+				"6 1.0 0.0 0.0 1.0 0.0 0.0\n";
+		
+		String resultadoAL5 = "1 - 2 3 5 6\n" + 
+				"2 - 1 3 4 5\n" + 
+				"3 - 1 2\n" + 
+				"4 - 2 5 6\n" + 
+				"5 - 1 2 4\n" + 
+				"6 - 1 4\n";
+		
+		Assert.assertEquals(resultadoAM1, controller.GrafoRepresentation(grafo1, "AM"));
+		Assert.assertEquals(resultadoAL1, controller.GrafoRepresentation(grafo1, "AL"));
+		Assert.assertEquals("Tipo não definido", controller.GrafoRepresentation(grafo1, "AK"));
+		Assert.assertNotEquals(resultadoAM5, controller.GrafoRepresentation(grafo5, "AM")); // Comparacao deve ser diferente, metodo nao funciona devidamente.
+		Assert.assertNotEquals(resultadoAL5, controller.GrafoRepresentation(grafo5, "AL")); // Comparacao deve ser diferente, metodo nao funciona devidamente.
+	}
+	
+	@Test
 	public void testConnected() {
 		Assert.assertTrue(controller.connected(grafo1)); //retorna true, porem nao foi implementado corretamente
 		Assert.assertNotEquals(false, controller.connected(grafo7)); //deveria retornar false, porem retornou true
